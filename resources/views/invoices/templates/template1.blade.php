@@ -125,7 +125,7 @@
     </div>
 
     <div class="signature">
-    <img src="{{ $company->signature }}" style="max-height: 0px;">
+    <img src="{{ $company->signature }}" style="max-height: 100px;">
     </div>
 
     <div class="banking-details">

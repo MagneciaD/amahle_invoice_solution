@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+background-size: cover;
+background-image: url('{{ asset('img/back.png') }}');
+background-position: center;
+overflow: hidden;

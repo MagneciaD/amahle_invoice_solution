@@ -4,197 +4,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amahle Invoicing System</title>
+    <title>3D Landing Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #ffffff; /* Set body background color to white */
+            background-image: url('{{ asset('img/b.png') }}');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dim overlay */
+            z-index: 0;
+            backdrop-filter: blur(4px); /* Adds blur to the background */
         }
 
         .hero {
-            padding: 80px 0;
-            background-color: #ffffff; /* Change hero background color to white */
-            perspective: 1000px; /* Perspective for 3D effect */
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Ensures content is above the overlay */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
         }
 
         .hero h1 {
             font-size: 3rem;
             font-weight: bold;
-            color: #333;
-        }
-
-        .hero h1 .highlight {
-            color: #60BF61;
+            color: #ffffff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); /* Pop-out effect */
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent box for better visibility */
+            padding: 10px 20px;
+            border-radius: 10px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #777;
-        }
-
-        .btn-primary-custom {
-            background-color: #e83e8c;
-            border: none;
+            font-size: 1rem;
+            color: #e0e0e0;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4); /* Semi-transparent box */
             padding: 10px 20px;
-            transition: transform 0.3s;
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-5px); /* Move up on hover */
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Shadow on hover */
-        }
-
-        .btn-outline-custom {
-            border-color: #e83e8c;
-            color: #e83e8c;
-            padding: 10px 20px;
-            transition: transform 0.3s;
-        }
-
-        .btn-outline-custom:hover {
-            transform: translateY(-5px); /* Move up on hover */
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Shadow on hover */
-        }
-
-        .feature-icons {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
-        .feature-icons .icon-box {
-            text-align: center;
-            margin: 0 15px;
-            transition: transform 0.3s; /* Transition for 3D effect */
-        }
-
-        .feature-icons .icon-box:hover {
-            transform: scale(1.1); /* Scale up on hover */
-        }
-
-        .feature-icons .icon-box i {
-            font-size: 2rem;
-            color: #e83e8c;
-        }
-
-        .feature-icons .icon-box p {
-            margin-top: 10px;
-            font-size: 1.1rem;
-            color: #555;
+            border-radius: 10px;
+            line-height: 1.5;
         }
 
         .hero-img {
-            max-width: 100%;
+            max-width: 240px;
             height: auto;
-            transform: rotateY(10deg); /* Slight 3D rotation */
-            transition: transform 0.5s; /* Smooth transition */
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3)); /* Shadow for depth */
         }
 
-        .hero-img:hover {
-            transform: rotateY(0deg); /* Rotate back on hover */
+        .btn-custom {
+            margin: 1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #00a859; /* Vibrant green */
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Depth effect */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+        .btn-custom:hover {
+            transform: scale(1.05); /* Slight enlargement */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem; /* Adjust for smaller screens */
+        .floating-ball {
+            width: 80px;
+            height: 80px;
+            background-color: #00a859;
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
             }
 
-            .hero p {
-                font-size: 1rem; /* Adjust for smaller screens */
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="hero">
+        <img src="{{ asset('img/amahle1.png') }}" alt="Invoicing Illustration" class="img-fluid hero-img">
+        <h1>Welcome to Amahle Invoice Solution</h1>
+        <p>Your smart, fast, and hassle-free way to manage invoices. We're here to make your billing experience simple, <br> Let’s get started! 👋</p>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="#">Amahle Invoicing Solution</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    @if (Route::has('login'))
-                    <nav class="d-flex flex-row">
-                        @auth
-                        <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-                        @else
-                        <a href="{{ route('login') }}" class="nav-link">Log in</a>
-                        @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="nav-link">Register</a>
-                        @endif
-                        @endauth
-                    </nav>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero text-center">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Left: Text & Buttons -->
-                <div class="col-lg-6 hero-content text-lg-start">
-                    <h1>Master <span class="highlight">Professional Invoicing</span> Quickly & Easy</h1>
-                    <p class="mt-3">Welcome to our receipt and invoice system. Streamline your operations with ease and efficiency by amahle holdings pty ltd.</p>
-                    
-                    <div class="feature-icons mt-5">
-                        <div class="icon-box">
-                            <i class="bi bi-lock"></i>
-                            <p>Secure Storage</p>
-                        </div>
-                        <div class="icon-box">
-                            <i class="bi bi-search"></i>
-                            <p>Fast Search and Retrieval</p>
-                        </div>
-                        <div class="icon-box">
-                            <i class="bi bi-file-earmark-text"></i>
-                            <p>Professional Receipts and Invoices</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Right: Image -->
-                <div class="col-lg-6 text-center">
-                    <img src="{{ asset('img/tax.jpg') }}" alt="Invoicing Illustration" class="img-fluid hero-img">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Moving Element -->
-    <div id="movingElement" style="width: 100px; height: 100px; background-color: #60BF61; border-radius: 50%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"></div>
-
-    <!-- JavaScript for moving element -->
-    <script>
-        const movingElement = document.getElementById('movingElement');
-        let angle = 0;
-
-        function moveElement() {
-            angle += 1; // Change the angle for movement
-            const x = Math.sin(angle * Math.PI / 180) * 50; // Calculate x position
-            const y = Math.cos(angle * Math.PI / 180) * 50; // Calculate y position
-            movingElement.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
-            requestAnimationFrame(moveElement); // Call this function again for the next frame
-        }
-
-        moveElement(); // Start the animation
-    </script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+        @if (Route::has('login'))
+        <nav class="d-flex justify-content-center gap-3">
+            @auth
+            <a href="{{ url('/dashboard') }}" class="btn btn-primary btn-custom">Dashboard</a>
+            @else
+            <a href="{{ route('login') }}" class="btn btn-primary btn-custom">Log In</a>
+            @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="btn btn-outline-primary btn-custom">Sign Up</a>
+            @endif
+            @endauth
+        </nav>
+        @endif
+    <script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+   
 </body>
 
 </html>

@@ -179,7 +179,7 @@
     </div>
 
     <div class="signature">
-    <img src="{{ $company->signature }}" style="max-height: 50px;"> <!-- Logo aligned to the right -->
+    <img src="{{ $company->signature }}" style="max-height: 100px;"> <!-- Logo aligned to the right -->
     <p>Authorized Signature</p>
     </div>
 

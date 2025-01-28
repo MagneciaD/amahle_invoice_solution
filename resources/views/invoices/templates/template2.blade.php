@@ -208,7 +208,7 @@
     </div>
 
     <div class="signature">
-        <img src="{{ $company->signature }}" style="max-height: 50px;">
+        <img src="{{ $company->signature }}" style="max-height: 100px;">
     </div>
 
     <div class="footer">

@@ -68,18 +68,27 @@ class InvoiceController extends Controller
             ->with('success', 'Invoice created successfully!');
     }
     private function generateUniqueInvoiceNumber()
-    {
-        do {
-            // Generate a random invoice number (e.g., inv123)
-            $invoiceNumber = 'inv' . rand(100, 999); // Generates a random number between 100 and 999
-        } while (Invoice::where('invoice_number', $invoiceNumber)->exists());
+{
+    // Get the last invoice number from the database
+    $lastInvoice = Invoice::orderBy('id', 'desc')->first();
 
-        return $invoiceNumber;
+    if ($lastInvoice) {
+        // Extract the numeric part of the last invoice number
+        $lastNumber = intval(substr($lastInvoice->invoice_number, 3));
+        // Increment the numeric part
+        $newNumber = $lastNumber + 1;
+    } else {
+        // Start from 1 if there are no invoices yet
+        $newNumber = 1;
     }
 
+    // Format the new invoice number with leading zeros (e.g., inv0001)
+    $invoiceNumber = 'inv' . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
 
+    return $invoiceNumber;
+}
 
-    public function show(Invoice $invoice)
+  public function show(Invoice $invoice)
     {
         // Get the company associated with the logged-in user
         $company = Company::where('user_id', Auth::id())->first();
