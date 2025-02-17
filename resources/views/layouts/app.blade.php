@@ -9,8 +9,8 @@
     <title>{{ config('app.name', 'Amahle Invoicing Solution') }}</title>
 
     <!-- Fonts -->
-     <!-- Toastr CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -21,8 +21,8 @@
     <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet" />
 
     <!-- Scripts -->
-     <!-- Toastr JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="js/swiper-bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -33,11 +33,10 @@
 
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+<body class="font-sans antialiased" style="background: linear-gradient(to right, #ffffff, #d4f8e8);">
+    <div class="min-h-screen">
         @include('layouts.navigation')
         @include('partials.modals.contact_us')
-
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -62,7 +61,7 @@
             text: '{{ session('success') }}'
         });
     </script>
-@elseif(session('error'))
+    @elseif(session('error'))
     <script>
         Swal.fire({
             icon: 'error',
@@ -70,7 +69,7 @@
             text: '{{ session('error') }}'
         });
     </script>
-@elseif($errors->any())
+    @elseif($errors->any())
     <script>
         Swal.fire({
             icon: 'error',
@@ -78,10 +77,7 @@
             text: '{{ implode(', ', $errors->all()) }}'
         });
     </script>
-@endif
-
+    @endif
 </body>
-   
-
 
 </html>

@@ -19,7 +19,7 @@
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4 flex items-center">
                 <!-- Logo Image -->
-                <img src="{{ asset('storage/img/logos/amahlelogo.png') }}" alt="Amahle Logo" style="width: 45px; height: 45px; margin-right: 10px;">
+                <img src="{{ asset('/img/logo.png') }}" alt="Amahle Logo" style="width: 45px; height: 45px; margin-right: 10px;">
 
                 <!-- User Information -->
                 <div>
